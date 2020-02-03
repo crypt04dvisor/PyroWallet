@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html>
+	
 <head>
 <style>
 body {
@@ -116,7 +117,9 @@ body {
   .sidebar {padding-top: 15px;}
   .sidebar a {font-size: 18px;}
 }
-</style>
+	</style>
+	
+
 </head>
 <body>
 
@@ -131,7 +134,7 @@ body {
 
 	<meta name="description" content="PYROWallet">
 
-	<meta name="keywords" content="pyro">
+	<meta name="keywords" content="PYROwallet">
 
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
 
@@ -142,6 +145,7 @@ body {
 	<script src="js/jquery.min.js"></script>
 
 	
+
 
 
 	
@@ -250,7 +254,12 @@ body {
 
 			</div>
 
-		
+	<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+   <a href="PyroWallet.html">PYRO Wallet</a>
+ 
+  </div>
+</div>		
 
 			<div class="row mainboard">
 
@@ -288,7 +297,7 @@ body {
 								<span id='uniqkey' >Your PYRO PUBLIC key: <span id='openkeyspan'></span> </span>
 
 								 <div id='balacnetokens'>
-
+									
 	                                                         <span class='balance' style='float:left;padding:8px;'> </span> </div> 
 
 
@@ -316,7 +325,7 @@ body {
 
                     <div class="b-form-cont">
 
-						<h2 class="b-form-cont__title">Send Void</h2> 
+						<h2 class="b-form-cont__title">Send PYRO</h2> 
 
 			   
 
@@ -325,36 +334,48 @@ body {
 								<div class='b-form__row'>
 
 									<div class='onlyhavetoken'>
-									<form oninput="balacnesend.value=parseInt(cuda.value)">
+										
+							<form action="balacnesend.value=parseInt(cuda.value)" >
+								
 									To address: <Br>
 
-									<input type='text' id='kuda' style='margin-bottom:20px' id='openkey22' maxlength="42" minlength="42"  value='0x235f30f2877409512dd2a1865e226ea458607572'  >
-
+									
+					<input id="kuda" maxlength="42" id='openkey29' style='margin-bottom:20px' onClick="this.setSelectionRange(0, this.value.length)" id='openkey22' type="text" class="txtbox" onkeypress='validate(event)' onKeyDown=prventBackspace();onblur="testing(this.value,42);Minimum(this,42);" onkeypress="testing(this.value,42)";  >
 									Amount: <Br>
 									
 									
-                                                                      <input type="number"  style='margin-bottom:20px'   id="cuda">
-  									
+                                                                      <input type="number"  style='margin-bottom:20px'   id="cuda"><Br>
                                                                       
-                                                                           
-									<input type='button' onclick='try2send()' class='btn' name='BTN' value='Send'>
-										
-										
-									<span id='consolesend'></span><Br>
-									
+                                                                       <input type='button' onclick='conf()' class='btn' name='BTN' value='Send'>
+									<span id='consolesend'></span><Br><Br>
+											
 										Double check the token address BEFORE sending. We will not be able to refund tokens that are sent to incorrect addresses.
-									<Br>
+			
+								</form>
 								
-									<Br>
+  
+
 									
-									
-										
+						
+<script>
+function conf() {
+  var txt;
+  var r = confirm("Are you sure?");
+  if (r == true) {
+    try2send() ;
+  } else {
+    txt = "You pressed Cancel!";
+  }
+  
+}
+
+</script>	
 
 									<script>
                                                                          
 									function try2send() {
                                                                
-										$("#consolesend").html('.:...::');
+										$("#consolesend").html('Processing');
 										sendRwTr(0,[$("#kuda").val(),$("#cuda").val()*1000000000000000000],"transfer","#consolesend");
 									
 									}
@@ -366,7 +387,7 @@ body {
 
 									<div class='onlynohavetoken'>
 
-									Sending between Token holders enabled. Fund your wallet to access this features.
+									Sending between Token holders enabled. Fund your wallet With PYRO to access this features.
 
 									</div>
 
@@ -422,7 +443,7 @@ PYRO transactions can be found on the block explorer here: <a href='#' id='mysma
 
 								
 									<div id='nhistory'></div><Br><Br>
-							
+							    
 								</div>
 								
 
@@ -460,19 +481,6 @@ PYRO transactions can be found on the block explorer here: <a href='#' id='mysma
 	setInterval(rebalance,10000);
 	
 	</script>
-<script src="https://widget-convert.bancor.network/v1"></script>
-<script>
-const widgetInstance = BancorConvertWidget.createInstance({
-    "type": "1",
-    "blockchainType": "ethereum",
-    "baseCurrencyId": "594bb7e468a95e00203b048d",
-    "pairCurrencyId": "5937d635231e97001f744267",
-    "primaryColor": "#102644",
-    "widgetContainerId": "bancor-wc-id-1",
-    "displayCurrency": "ETH"
-});
-</script>
-	
 
 <script>
 function openNav() {
@@ -499,15 +507,34 @@ for (i = 0; i < dropdown.length; i++) {
     }
   });
 }	</script>
-  <script>
-$.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=250&page=7&sparkline=false", function(data, status) {
-  for (var i = 0; i < data.length - 1; i++) {
-    if (data[i].symbol == "a") {
-      $("#my_cell").html(data[i].current_price*'balacnetokens');
-    }
+ 
+										<script type="text/javascript">
+ function validate(evt) {
+   var theEvent = evt || window.event;
+   var key = theEvent.keyCode || theEvent.which;
+   key = String.fromCharCode(key);
+  var regex = /[]|\./;
+   if(!regex.test(key)) {
+    theEvent.returnValue = false;
+    if(theEvent.preventDefault) theEvent.preventDefault();
   }
-});
-  </script>
+ }
+ </script>
+<script type="text/javascript">
+    function prventBackspace(e) {
+        var evt = e || window.event;
+        if (evt) {
+            var keyCode = evt.charCode || evt.keyCode;
+            if (keyCode === 8 || keyCode ===190) {
+                if (evt.preventDefault) {
+                    evt.preventDefault();
+                } else {
+                    evt.returnValue = false;
+                }
+            }
+        }
+    }
+</script>
 </body>
 
 </html>
