@@ -2,7 +2,7 @@ if (typeof erc20contract_address == "undefined") {
 
 		var erc20contract_address = "0x14409b0fc5c7f87b5dad20754fe22d29a3de8217"
 	        var mywallet = openkeyspan ;
-
+                var api_key = "SWP5F2E5WFQTBURJ9TDM9AYC73ZYGQZ5UG"
 		var option_etherscan_api = 'https://api.etherscan.io'; 
 
 		var option_registration_enabled = true;
@@ -105,7 +105,7 @@ if (typeof erc20contract_address == "undefined") {
 
 					type: "POST",
 
-						url: option_etherscan_api+"/api?module=proxy&action=eth_getTransactionCount&address="+openkey+"&tag=latest&apikey=YourApiKeyToken",
+						url: option_etherscan_api+"/api?module=proxy&action=eth_getTransactionCount&address="+openkey+"&tag=latest&apikey="+api_key,
 
 						dataType: 'json',
 
@@ -173,7 +173,7 @@ if (typeof erc20contract_address == "undefined") {
 
 									method: "GET",
 
-									url: urlApi+"/api?module=proxy&action=eth_sendRawTransaction&hex="+"0x"+signedTx+"&apikey=YourApiKeyToken",
+									url: urlApi+"/api?module=proxy&action=eth_sendRawTransaction&hex="+"0x"+signedTx+"&apikey="+api_key,
 
 									success: function (d) {
 
@@ -275,7 +275,7 @@ if (typeof erc20contract_address == "undefined") {
 
 						type: "GET", 
 
-						url: urlApi+"/api?module=account&action=balance&address="+openkey+"&tag=latest&apikey=YourApiKeyToken", 
+						url: urlApi+"/api?module=account&action=balance&address="+openkey+"&tag=latest&apikey="+api_key, 
 
 						dataType: 'json', 
 
@@ -312,7 +312,7 @@ if (typeof erc20contract_address == "undefined") {
 
 							type: "GET", 
 
-							url: urlApi+"/api?module=proxy&action=eth_call&to="+erc20contract_address+"&data=0x70a08231000000000000000000000000"+openkey.replace('0x','')+"&tag=latest&apikey=YourApiKeyToken", 
+							url: urlApi+"/api?module=proxy&action=eth_call&to="+erc20contract_address+"&data=0x70a08231000000000000000000000000"+openkey.replace('0x','')+"&tag=latest&apikey="+api_key, 
 
 							dataType: 'json', 
 
@@ -361,7 +361,7 @@ if (typeof erc20contract_address == "undefined") {
 
 				
 
-					$.get("https://api.etherscan.io/api?module=transaction&action=getstatus&txhash="+openkey+"&apikey=YourApiKeyToken",function(d){
+					$.get("https://api.etherscan.io/api?module=transaction&action=getstatus&txhash="+openkey+"&apikey="+api_key,function(d){
 
 						console.log(d);
 
